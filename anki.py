@@ -94,28 +94,67 @@ def create_anki_deck(vocab_dict, filename, deck_name):
             {
                 'name': 'Recognition',
                 'qfmt': """
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 2em;">
-                    <span style="font-size: 3em;">
-                        {{Expression}}
-                    </span>
+                <div class="center">
+                <span style="font-family: irohamaru mikami; font-size: 50px;">{{Expression}}</span>
                 </div>
                 """,
                 'afmt': """
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 2em;">
-                    <span style="font-size: 3em;">
-                        {{#Reading}}{{furigana:Reading}}{{/Reading}}
-                    </span>
-                    <hr id="answer" style="width: 100%;">
-                    <span style="font-size: 3em;">
-                        {{Meaning}}
-                    </span>
+                <div class="card-content center">
+                <span style="font-size: 50px;">{{furigana:Reading}}</span>
+
+                <hr id="answer" class="separator" />
+
+                <div class="left">
+                    <span style="font-size: 30px;">{{furigana:Meaning}}</span>
+                </div>
                 </div>
                 """,
             },
         ],
         css="""
-        rt {
-            font-size: 0.625em;
+        @font-face {
+            font-family: irohamaru mikami; 
+            src: url('_irohamaru mikami.ttf');
+        }
+
+        .card-content {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            font-family: irohamaru mikami;
+        }
+
+        .card-tags-container {
+            margin-top: auto;
+            align-self: flex-start;
+            background-color: #f5f5f5;
+        }
+
+        .separator {
+            border: 0;
+            height: 1px;
+            background-color: #ccc;
+            width: 100%;
+            margin: 16px 0;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .bottom {
+            font-size: 12px;
+            text-align: left;
+            padding: 4px;
+            overflow: hidden;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .card.nightMode .card-tags-container {
+            background-color: #333;
         }
         """
     )
